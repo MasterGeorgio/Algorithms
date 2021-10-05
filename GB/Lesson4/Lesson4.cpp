@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdio.h>
 
+// ------------------------------------------
 // TASK 4.1----------------------------------
 // dec to hex
 void DecToHex(uint32_t dwValue)
@@ -27,6 +28,7 @@ void task4_1()
 	printf("\n");
 }
 
+// ------------------------------------------
 // TASK 4.2.1--------------------------------
 // Recursively
 int ExpoVarOne(int a, int b)
@@ -52,6 +54,7 @@ void task4_2_1()
 	printf("nExpo = %d", nExpo);
 }
 
+// ------------------------------------------
 // TASK 4.2.2--------------------------------
 // Recursively, using the degree parity property
 int ExpoVarTwo(int a, int b)
@@ -77,15 +80,52 @@ void task4_2_2()
 	nExpo = ExpoVarOne(2, 16);
 	// 65536
 	printf("nExpo = %d", nExpo);
-
 }
 
+// ------------------------------------------
 // TASK 4.3----------------------------------
+
+#define WIDTH  5
+
+#define HEIGTH WIDTH
+/*
+int g_nChessBoard[WIDTH][HEIGTH] = {
+	0, 0, 0, 1, 0,
+	0, 0, 0, 0, 0,
+	0, 1, 0, 1, 0,
+	0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0,
+};
+*/
+
+int routes(int x, int y)
+{
+	if (x == 0 && y == 0)
+		return 0;
+/*
+	if (g_nChessBoard[x][y])
+		return 0;
+*/
+	if (x == 0 ^ y == 0)
+		return 1;
+
+	return routes(x - 1, y) + routes(x, y - 1);
+}
+
 // Task 4.3
 void task4_3()
 {
 	printf("\n\nTask 4.3\n");
+
+	for (size_t i = 0; i < WIDTH; i++)
+	{
+		for (size_t j = 0; j < HEIGTH; j++)
+			printf("%5d", routes(i, j));
+
+		printf("\n");
+	}
 }
+// ------------------------------------------
 
 
 int main()
